@@ -1,0 +1,11 @@
+Options -Indexes
+ErrorDocument 403 "Page Not Found"
+ErrorDocument 404 "Page Not Found"
+
+# Typing a .js address in the browser bar shows "Page Not Found".
+# Browsers label that request Sec-Fetch-Dest: document, while a <script> tag is labelled "script",
+# so our pages still load their JavaScript. (This only stops casual browsing - it cannot truly hide a JS file.)
+RewriteEngine On
+RewriteCond %{REQUEST_URI} \.js$ [NC]
+RewriteCond %{HTTP:Sec-Fetch-Dest} ^document$ [NC]
+RewriteRule .* - [F]

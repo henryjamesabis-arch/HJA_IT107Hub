@@ -1,0 +1,6 @@
+# Secrets and logs - NEVER commit these (protection 11)
+config.php
+*.log
+error.log
+vendor/
+composer.lock
